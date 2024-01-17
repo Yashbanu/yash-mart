@@ -8,7 +8,7 @@
     <title>E-Commerse</title>
 </head>
 <body>
-    <h1>ADD MEMBER</h1>
+    <h1>ADD PRODUCTS</h1>
 <form action="add" method="post">
     @csrf
   
