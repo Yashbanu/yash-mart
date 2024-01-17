@@ -1,0 +1,51 @@
+body{
+  background-image: url("../img/shopping-bag-cart.jpg");
+  background-repeat: no-repeat;
+background-attachment: fixed;
+background-color: aquamarine;
+
+ 
+}
+form{
+    text-align: center;
+    margin-top: 80px;
+}
+table{
+    text-align: center;
+    margin-top: 80px;
+    margin-left: 40%;
+   margin-bottom: 50px;
+}
+th,td{
+    padding: 20px;
+    width: 20px;
+}
+
+.btn-display{
+    text-align: center;
+    margin-left: 44%;
+    margin-top: 80px;
+}
+.home-form{
+    text-align: center;
+    margin-top: 200px;
+}
+button{
+    padding: 15px;
+    margin: 10px;
+    width: 180px;
+}
+h1{
+    text-align: center;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    text-decoration: underline;
+    font-size: 40px;
+}
+input{
+    padding: 10px;
+    width: 200px
+}
+span{
+    color: red;
+}
