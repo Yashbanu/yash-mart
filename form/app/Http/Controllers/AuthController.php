@@ -5,6 +5,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use App\Jobs\SendEmailJob;
 class AuthController extends Controller
 {
 
@@ -21,22 +22,28 @@ class AuthController extends Controller
     //Register
     public function register(Request $req){
         try{
-        $user=new User();
-        $user->name= $req->name;
-        $user->email=$req->email;
-        $user->password=$req->password;
-        $req->validate([
-            'name' => 'required | string | max:255',
-            'email'=> 'required | email',
-            'password' => 'required | min:5 | max:20'
+            $user = new User();
+            $user->name = $req->name;
+            $user->email = $req->email;
+            $user->password = $req->password;
+            $req->validate([
+                'name' => 'required | string | max:255',
+                'email'=> 'required | email',
+                'password' => 'required | min:5 | max:20'
 
-        ]);
-        $user->save();
+            ]);
+            $user->save();
+
+        
+        } catch(\Exception $e) {
+            return redirect("/");
+        }
+
+        //job to send e-mail after sucessful register
+        $job = (new SendEmailJob($user))->delay(2);
+        dispatch($job);
+
         return redirect("/");
-    }
-    catch(\Exception $e){
-        return redirect("/");
-    }
     }
 
     //Login authentication
@@ -52,7 +59,7 @@ class AuthController extends Controller
                 return redirect("home");
             }
 
-            return redirect()->back()->withErrors(["email"=>"Invalid Credentials !"]);
+            return redirect()->back()->withErrors(["email" => "Invalid Credentials !"]);
     }
 
     //Logout 
