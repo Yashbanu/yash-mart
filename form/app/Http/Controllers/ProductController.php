@@ -6,10 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 class ProductController extends Controller
 {
-
-
     //AddProduct
-   public function AddProduct(Request $req){
+   public function addProduct(Request $req){
         $details=new Product();
         $details->name= $req->name;
         $details->category= $req->category;
@@ -25,27 +23,19 @@ class ProductController extends Controller
         $details->save();
         return redirect("display");
      }
-
-
      //DeleteProduct
-    public function DeleteProduct(Request $req){
+    public function deleteProduct(Request $req){
         $data=Product::find($req->id);
         $data->delete();
         return redirect("display");
      } 
-
-
-     //UpdateProduct
-    public function UpdateProduct(Request $req){
+    //UpdateProduct
+    public function updateProduct(Request $req){
         $data=Product::find($req->id);
         return view("update_product",["data"=>$data]);
      }
-
-
-
-
      //SaveUpdate
-    public function SaveUpdate(Request $req){
+    public function saveUpdate(Request $req){
         $data=Product::find($req->id);
         $data->name=$req->name;
         $data->category=$req->category;
@@ -54,11 +44,8 @@ class ProductController extends Controller
         $data->save();
         return redirect("display");
      }
-
-
-
      //Dispaly
-    public  function Display(Request $req){
+    public  function display(Request $req){
         $data=Product::all();
         return view("display_product",["details"=>$data]);
      }
