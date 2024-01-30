@@ -16,5 +16,10 @@
 <a href="update"><button type="submit">UPDATE</button></a>
 <a href="display"><button type="submit">VIEW</button></a>
    </div>
+
+   <form action="logout" method="post">
+    @csrf
+    <button type="submit" value="logout">Logout</button>
+</form>
 </body>
 </html>
